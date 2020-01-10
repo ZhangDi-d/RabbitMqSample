@@ -8,8 +8,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @MapperScan("com.ryze.test.mapper")
 @EnableScheduling
-public class TestApplication {
+public class Application {
     public static void main(String[] args) {
-        SpringApplication.run(TestApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 }
