@@ -27,7 +27,7 @@ public class BaseConsumerProxy {
         ClassLoader classLoader = target.getClass().getClassLoader();
         Class[] interfaces = target.getClass().getInterfaces();
 
-        Object proxy = Proxy.newProxyInstance(classLoader, interfaces, (proxy1, method, args) -> {
+        return Proxy.newProxyInstance(classLoader, interfaces, (proxy1, method, args) -> {
             Message message = (Message) args[0];
             Channel channel = (Channel) args[1];
 
@@ -52,8 +52,6 @@ public class BaseConsumerProxy {
                 return null;
             }
         });
-
-        return proxy;
     }
 
     /**
@@ -70,7 +68,7 @@ public class BaseConsumerProxy {
         for (Map.Entry entry : headers.entrySet()) {
             String key = (String) entry.getKey();
             String value = (String) entry.getValue();
-            if (key.equals("spring_returned_message_correlation")) {
+            if ("spring_returned_message_correlation".equals(key)) {
                 correlationId = value;
             }
         }

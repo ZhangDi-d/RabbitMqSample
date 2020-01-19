@@ -109,14 +109,13 @@ public class JodaTimeUtil {
      */
     private static Boolean isBeforeNow(String timeStr) {
         DateTimeFormatter format = DateTimeFormat.forPattern(STANDARD_FORMAT);
-        DateTime dateTime;
+        DateTime dateTime = null;
         try {
             dateTime = DateTime.parse(timeStr, format);
         } catch (Exception e) {
             log.error("isBeforeNow error: timeStr: {}", timeStr, e);
-            return null;
         }
-        return dateTime.isBeforeNow();
+        return dateTime != null && dateTime.isBeforeNow();
     }
 
     /**
